@@ -8,6 +8,15 @@ class TestViews(TestCase):
         self.client = Client()
         User.objects.create_user(username="test", password="test")
 
+    def test_root_endpoint_returns_login(self):
+        """
+        A user should get to the login if they hit the root url
+        :return:
+        """
+        response = self.client.get('/')
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'registration/login.html')
+
     def test_home_endpoint(self):
         """
         Make sure a logged in user can access the home page.
