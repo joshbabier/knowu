@@ -1,4 +1,2 @@
-__author__ = 'joshbabier'
-
-
 from scraper import *
+from views import *
