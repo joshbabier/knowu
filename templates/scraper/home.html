@@ -1,0 +1,12 @@
+{% extends "scraper/base.html" %}
+{% block content %}
+    <h3>Welcome: {{ username }}</h3>
+
+    <p>Click on any state code to see geolocation data for all counties in that state</p>
+    <ul>
+        <li><a href='/geodata/?state=ALL'>All States</a></li>
+            {% for state in states %}
+            <li><a href='/geodata/?state={{ state }}'>{{ state }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "scraper/base.html" %}
+{% block content %}
+    <h3>Geo Data By State</h3>
+    {% regroup counties by state_name as state_list %}
+    <ul>
+        {% for state in state_list %}
+            <li>{{ state.grouper }}
+                <ul>
+                    {% for county in state.list %}
+                        <li><a href="{{ county.url }}">{{ county.name }}</a>
+                            <ul>
+                                {% for county_key, county_value in county.items %}
+                                    <li>{{ county_key }}: {{ county_value }}</li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
