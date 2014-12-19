@@ -34,8 +34,8 @@ def read_url(url):
         # Non-successful response code
         elif hasattr(error, 'code'):
             content = '{"error": ' + error.code + '}'
-    else:
-        pass
+        else:
+            content = '{"error": "Unknown"}'
 
     return content
 

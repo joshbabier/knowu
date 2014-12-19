@@ -5,7 +5,7 @@ from django.test import TestCase
 from state_scraper.scraper import read_url, pretty_print_content
 
 
-class Scraper(TestCase):
+class TestScraper(TestCase):
     """
     Tests the functionality of the scraper module.
     """

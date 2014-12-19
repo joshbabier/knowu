@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from django.test import TestCase, Client
 
 
-class Scraper(TestCase):
+class TestViews(TestCase):
     def setUp(self):
         self.client = Client()
         user = User.objects.create_user(username="test", password="test")
