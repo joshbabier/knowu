@@ -1,5 +1,6 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import RequestContext
@@ -35,13 +36,13 @@ def login_user(request):
         if user is not None:
             if user.is_active:
                 login(request, user)
-                return HttpResponseRedirect('/home/')
+                return HttpResponseRedirect(reverse('home'))
     return render_to_response('registration/login.html', context_instance=RequestContext(request))
 
 
 def logout_user(request):
     logout(request)
-    return HttpResponseRedirect('/login/')
+    return HttpResponseRedirect(reverse('login'))
 
 
 @login_required(redirect_field_name=None)

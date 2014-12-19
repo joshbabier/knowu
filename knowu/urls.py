@@ -7,13 +7,13 @@ admin.autodiscover()
 urlpatterns = patterns('',
                        # login
                        url(r'^$', 'state_scraper.views.login_user'),
-                       (r'^login/$', 'state_scraper.views.login_user'),
+                       url(r'^login/$', 'state_scraper.views.login_user', name='login'),
 
                        # logout
-                       (r'^logout/$', 'state_scraper.views.logout_user'),
+                       url(r'^logout/$', 'state_scraper.views.logout_user', name='logout'),
 
                        # home
-                       (r'^home/$', 'state_scraper.views.home'),
+                       url(r'^home/$', 'state_scraper.views.home', name='home'),
 
                        # geodata
                        url(r'^geodata/$', 'state_scraper.views.geodata', name='geodata'),
