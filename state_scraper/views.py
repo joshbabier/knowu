@@ -1,7 +1,7 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
-from django.shortcuts import render_to_response, redirect
+from django.shortcuts import redirect, render
 from django.template import RequestContext
 
 from scraper import get_contents_of_urls
@@ -36,7 +36,7 @@ def login_user(request):
             if user.is_active:
                 login(request, user)
                 return redirect(reverse('home'))
-    return render_to_response('registration/login.html', context_instance=RequestContext(request))
+    return render(request, 'registration/login.html', context_instance=RequestContext(request))
 
 
 def logout_user(request):
@@ -58,7 +58,7 @@ def home(request):
     :param request:
     :return:
     """
-    return render_to_response('scraper/home.html', {'username': request.user.username, 'states': models.states})
+    return render(request, 'scraper/home.html', {'username': request.user.username, 'states': models.states})
 
 
 @login_required(redirect_field_name=None)
@@ -87,7 +87,7 @@ def geodata(request):
 
         # This is where the urls get scraped
         counties = get_contents_of_urls(state_urls)
-        return render_to_response('scraper/geodata.html', {'counties': counties})
+        return render(request, 'scraper/geodata.html', {'counties': counties})
 
     # If the request is not a GET, just refresh the page
-    return render_to_response('scraper/home.html', {'username': request.user.username, 'states': models.states})
+    return render(request, 'scraper/home.html', {'username': request.user.username, 'states': models.states})
