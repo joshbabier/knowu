@@ -1,5 +1,3 @@
-__author__ = 'joshbabier'
-
 import json
 
 from django.test import TestCase
@@ -8,6 +6,9 @@ from state_scraper.scraper import read_url, pretty_print_content
 
 
 class Scraper(TestCase):
+    """
+    Tests the functionality of the scraper module.
+    """
     base_url = 'http://api.sba.gov/geodata/city_county_links_for_state_of/'
 
     def setUp(self):

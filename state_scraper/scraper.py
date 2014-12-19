@@ -4,6 +4,12 @@ import json
 
 from urllib2 import urlopen, URLError
 
+"""
+Stand alone module with all the functionality to grab
+geolocation data from the http://api.sba.gov site and
+write it into a file.
+"""
+
 
 def read_url(url):
     """
