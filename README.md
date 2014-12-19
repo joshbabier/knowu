@@ -8,3 +8,8 @@ It currently features:
 * A stand-alone module that writes county geolocation data for all states into a text file in pretty printed JSON.
 
 You can view the project [here](http://54.165.212.2/)
+
+Tests are in the state_scraper/tests directory and can be run from outer project directory with the following commands:
+    
+    workon knowu
+    python manage.py test
