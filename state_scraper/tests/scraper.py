@@ -33,7 +33,7 @@ class TestScraper(TestCase):
         Test to make sure a bad url is handled gracefully
         """
         content = read_url('does_not_exist')
-        assert content == '{"error": "Bad url"}'
+        assert content == '{"error": "Bad Url"}'
 
     def test_read_url_with_invalid_path(self):
         """

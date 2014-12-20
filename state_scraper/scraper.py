@@ -2,7 +2,8 @@
 
 import json
 
-from urllib2 import urlopen, URLError
+import requests
+from requests.exceptions import MissingSchema
 
 """
 Stand alone module with all the functionality to grab
@@ -20,22 +21,17 @@ def read_url(url):
     :param url: str
     :return: str
     """
-    content = ''
-
     try:
-        response = urlopen(url)
-        content = response.read()
-    except ValueError:
-        content = '{"error": "Bad url"}'
-    except URLError as error:
-        # Can't get to the url
-        if hasattr(error, 'reason'):
-            content = '{"error": "' + error.reason + '"}'
-        # Non-successful response code
-        elif hasattr(error, 'code'):
-            content = '{"error": ' + error.code + '}'
+        response = requests.get(url)
+    except requests.ConnectionError:
+        content = '{"error": "Bad Connection"}'
+    except MissingSchema:  # The url does not exist
+        content = '{"error": "Bad Url"}'
+    else:
+        if response.status_code == 200:
+            content = response.text
         else:
-            content = '{"error": "Unknown"}'
+            content = '{"error": "' + response.reason + '"}'
 
     return content
 
