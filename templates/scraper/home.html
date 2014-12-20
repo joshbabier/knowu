@@ -4,7 +4,7 @@
 
     <p>Click on any state code to see geolocation data for all counties in that state</p>
     <ul>
-        <li><a href="{% url 'geodata' %}">All States</a></li>
+        <li><a href="{% url 'geodata' %}?state=ALL">All States</a></li>
             {% for state in states %}
             <li><a href="{% url 'geodata' %}?state={{ state }}">{{ state }}</a></li>
         {% endfor %}
